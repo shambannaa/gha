@@ -1,8 +1,9 @@
-name: test
-on: push
+name: hello
+on: workflow_dispatch      # manual "Run workflow" button
+
 jobs:
-	say-hi:
-		runs-on: ubuntu-latest
-		steps:
-			run: echo "hello from ${hostname}"
-			run: pwd
+  say-hi:                  # job ID
+    runs-on: ubuntu-latest # runner: a fresh GitHub-hosted VM
+    steps:
+      - run: echo "hi from $(hostname)"
+      - run: pwd
