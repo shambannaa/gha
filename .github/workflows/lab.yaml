@@ -1,9 +1,14 @@
 name: hello
-on: workflow_dispatch      # manual "Run workflow" button
+on: 
+	workflow_dispatch      # manual "Run workflow" button
+	push                   # runs on each commit 
 
 jobs:
   say-hi:                  # job ID
     runs-on: ubuntu-latest # runner: a fresh GitHub-hosted VM
     steps:
-      - run: echo "hi from $(hostname)"
-      - run: pwd
+      - run: |
+          pwd
+          whoami
+           
+      - run: echo "{GITHUB_WORKSPACE}"
