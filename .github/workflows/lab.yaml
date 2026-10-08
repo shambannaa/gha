@@ -1,7 +1,7 @@
 name: hello
 on: 
-	workflow_dispatch      # manual "Run workflow" button
-	push                   # runs on each commit 
+  workflow_dispatch      # manual "Run workflow" button
+  push                   # runs on each commit 
 
 jobs:
   say-hi:                  # job ID
