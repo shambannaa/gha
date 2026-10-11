@@ -1,0 +1,26 @@
+name: lesson3
+on:
+  workflow_dispatch:
+
+jobs:
+  moves:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        run: |
+          mkdir -p src
+          echo "alpha" > src/a.txt
+          echo "beta" > src/b.txt
+          echo "gamma" > src/c.log
+
+      - name: Copy and rename
+        run: |
+          ??? -r src backup
+          ??? backup/c.log backup/c.old
+          find . -type f -not -path "./.git/*"
+
+      - name: Delete and verify
+        run: |
+          ??? -f src/a.txt
+          ??? -f src/missing.txt
+          find . -type f -name "*.txt"
