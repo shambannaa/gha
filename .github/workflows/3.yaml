@@ -15,12 +15,12 @@ jobs:
 
       - name: Copy and rename
         run: |
-          ??? -r src backup
-          ??? backup/c.log backup/c.old
+          copy -r src backup
+          move backup/c.log backup/c.old
           find . -type f -not -path "./.git/*"
 
       - name: Delete and verify
         run: |
-          ??? -f src/a.txt
-          ??? -f src/missing.txt
+          del -f src/a.txt
+          del -f src/missing.txt
           find . -type f -name "*.txt"
