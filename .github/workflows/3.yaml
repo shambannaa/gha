@@ -21,6 +21,6 @@ jobs:
 
       - name: Delete and verify
         run: |
-          del -f src/a.txt
-          del -f src/missing.txt
+          rm -f src/a.txt
+          rm -f src/missing.txt
           find . -type f -name "*.txt"
