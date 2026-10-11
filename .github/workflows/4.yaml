@@ -1,11 +1,11 @@
 name: lession4
 on:
- workflow_dispatch
+  workflow_dispatch
 
 jobs:
- moves:
-  runs-on: ubuntu-latest
-  steps:
-   name: create
-   run: |
-     mkdir -p src
+  moves:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create
+        run: |
+          mkdir -p src
