@@ -15,7 +15,7 @@ jobs:
 
       - name: Copy and rename
         run: |
-          copy -r src backup
+          cp -r src backup
           move backup/c.log backup/c.old
           find . -type f -not -path "./.git/*"
 
