@@ -16,7 +16,7 @@ jobs:
       - name: Copy and rename
         run: |
           cp -r src backup
-          my backup/c.log backup/c.old
+          mv backup/c.log backup/c.old
           find . -type f -not -path "./.git/*"
 
       - name: Delete and verify
