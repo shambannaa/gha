@@ -8,14 +8,14 @@ jobs:
     steps:
       - name: Create folder and files
         run: |
-          mkdir ??? reports
+          mkdir -p reports
           touch reports/empty.txt
-          echo "first line" ??? reports/notes.txt
-          echo "second line" ??? reports/notes.txt
+          echo "first line" >> reports/notes.txt
+          echo "second line" >> reports/notes.txt
           printf "app=%s\nenv=%s\n" "demo" "dev" > reports/config.txt
 
       - name: Read them back
         run: |
           cat reports/notes.txt
-          cat ???
+          cat reports/config.txt
           ls -la reports
