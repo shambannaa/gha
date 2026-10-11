@@ -1,0 +1,21 @@
+name: lesson2
+on:
+  workflow_dispatch:
+
+jobs:
+  files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create folder and files
+        run: |
+          mkdir ??? reports
+          touch reports/empty.txt
+          echo "first line" ??? reports/notes.txt
+          echo "second line" ??? reports/notes.txt
+          printf "app=%s\nenv=%s\n" "demo" "dev" > reports/config.txt
+
+      - name: Read them back
+        run: |
+          cat reports/notes.txt
+          cat ???
+          ls -la reports
