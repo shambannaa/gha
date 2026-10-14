@@ -1,11 +1,28 @@
-name: lession4
-on:
-  workflow_dispatch
+name: lesson4
+on: workflow_dispatch
 
 jobs:
-  moves:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: create
+      - name: Get
+        uses: actions@checkout
+
+      - name: Verify checkout
         run: |
-          mkdir -p src
+          ls -la
+          test -f README.md
+          git log --oneline
+
+      - name: Build
+        run: |
+          mkdir -p build
+          cp README.md build/
+          echo "BUILD_ID=$(date +%s)" >> "$BUILD_ID"
+          echo "built from $GITHUB_SHA" > build/version.txt
+
+      - name: Verify build
+        run: |
+          ls -la build
+          cat build/version.txt
+          echo "id: $BUILD_ID"
