@@ -1,0 +1,25 @@
+name: lesson6
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      myversion: ${{ steps.v.outputs.version }}
+    steps:
+      - id: v
+        run: |
+          echo "version=1.2.3" >> "$GITHUB_OUTPUT"
+          echo "ENV_VER=1.2.3" >> "$GITHUB_ENV"
+          echo "hello" > file.txt
+
+  deploy:
+    needs: build 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output
+        run: echo "output: ${{ needs.build.outputs.myversion }}"
+      - name: Env
+        run: echo "env: [$ENV_VER]"
+      - name: File
+        run: ls file.txt || echo "file.txt not found"
