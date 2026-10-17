@@ -1,0 +1,16 @@
+name: lesson5
+on: workflow_dispatch
+
+jobs:
+  outputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make version
+        id: build
+        run: |
+          echo "1.2.3" > version.txt
+          echo "version=$(cat version.txt)" >> "$GITHUB_OUTPUT"
+          echo "lines=$(wc -l < version.txt)" >> "$GITHUB_OUTPUT"
+
+      - name: Use outputs
+        run: echo "version ${{ steps.build.outputs.version }}, lines ${{ steps.build.outputs.lines }}"
