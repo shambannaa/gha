@@ -14,12 +14,14 @@ jobs:
           echo "hello" > file.txt
 
   deploy:
-    needs: build 
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Output
-        run: echo "output: ${{ needs.build.outputs.version }}"
+        run: |
+          echo "output: ${{ needs.build.outputs.version }}"
       - name: Env
-        run: echo "env: [$ENV_VER]"
+        run: |
+          echo "env: [$ENV_VER]"
       - name: File
         run: ls file.txt || echo "file.txt not found"
