@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      myversion: ${{ steps.v.outputs.version }}
+      version: ${{ steps.v.outputs.version }}
     steps:
       - id: v
         run: |
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output
-        run: echo "output: ${{ needs.build.outputs.myversion }}"
+        run: echo "output: ${{ needs.build.outputs.version }}"
       - name: Env
         run: echo "env: [$ENV_VER]"
       - name: File
