@@ -18,8 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output
-        run: |
-          echo "output: ${{ needs.build.outputs.version }}"
+        run: "output: ${{ needs.build.outputs.version }}"
       - name: Env
         run: |
           echo "env: [$ENV_VER]"
