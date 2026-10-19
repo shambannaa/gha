@@ -1,0 +1,26 @@
+name: lesson8
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  expr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hash before checkout
+        run: |
+          echo "before: [${{ hashFiles('README.md') }}]"
+
+      - uses: actions/checkout@v4
+
+      - name: Hash after checkout
+        run: |
+          echo "after: ${{ hashFiles('README.md') }}"
+
+      - name: Operators and functions
+        run: |
+          echo "is main: ${{ github.ref_name == 'main' }}"
+          echo "is push: ${{ gitHub.event_name == 'push' }}"
+          echo "label: ${{ github.event_name == 'push' && 'auto' || 'manual' }}"
+          echo "msg: ${{ format('{0} ran #{1}', github.actor, github.run_number) }}"
+          echo "has gha: ${{ contains(github.repository, 'gha') }}"
