@@ -23,3 +23,9 @@ jobs:
         run: |
           echo "env style: $GITHUB_SHA"
           echo "ctx style: ${{ github.sha }}"
+      - name: Dump github context
+        env:
+          GH: ${{ toJSON(github) }}
+        run: |
+          echo "$GH"
+
