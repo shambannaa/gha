@@ -1,0 +1,25 @@
+name: lesson7
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Env vars
+        run: |
+          echo "repo: $GITHUB_REPOSITORY"
+          echo "event: $GITHUB_EVENT_NAME"
+          echo "ref: $GITHUB_REF_NAME"
+
+      - name: Contexts
+        run: |
+          echo "actor: ${{ github.actor }}"
+          echo "os: ${{ github.runner.os }}"
+          echo "run number: ${{ github.run_number }}"
+
+      - name: Same value, two styles
+        run: |
+          echo "env style: $GITHUB_SHA"
+          echo "ctx style: ${{ github.sha }}"
