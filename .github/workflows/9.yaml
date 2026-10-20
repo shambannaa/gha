@@ -20,5 +20,12 @@ jobs:
         if: ${{ !cancelled() }}
         run: echo "cleanup"
       - name: Only on main
-        if: github.ref_name == 'main'
+        if: ${{ github.ref_name == 'main' && !cancelled() }}
         run: echo "main only"
+  notify:
+    needs: build
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "build job failed"
+
