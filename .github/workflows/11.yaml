@@ -1,0 +1,27 @@
+name: lesson11
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        options: [dev, staging, prod]
+        default: dev
+      verbose:
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    tags: ['docs/**']
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show
+        run: |
+          echo "event: ${{ github.event_name }}"
+          echo "target: ${{ inputs.target }}"
+          echo "verbose: ${{ inputs.verbose }}"
+      - name: Verbose only
+        if: inputs.verbose
+        run: echo "verbose details here"
