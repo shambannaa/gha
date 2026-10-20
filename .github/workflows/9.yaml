@@ -1,7 +1,6 @@
 name: lesson9
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   build:
