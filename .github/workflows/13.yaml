@@ -1,0 +1,26 @@
+name: lesson13
+on: workflow_dispatch
+
+jobs:
+  cache-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: .cache-demo
+          key: demo-${{ runner.os }}-${{ hashFiles('deps.txt') }}
+
+      - name: Expensive step
+        if: ${{ steps.cache.outputs.catch-hit != 'true'}}
+        run: |
+          echo "cache miss, building"
+          sleep 5
+          mkdir -p .cache-demo
+          echo "built at $(date)" > .cache-demo/result.txt
+
+      - name: Use it
+        run: cat .cache-demo/result.txt
