@@ -1,0 +1,31 @@
+name: lesson10
+on: workflow_dispatch
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Annotations
+        run: |
+          echo "::notice::this is a notice"
+          echo "::warning::this is a warning"
+          echo "::error::this is an error"
+          echo "still running after the error annotation"
+
+      - name: Group
+        run: |
+          echo "::group::Noisy section"
+          echo "line 1"
+          echo "line 2"
+          echo "::endgroup::"
+
+      - name: Mask
+        run: |
+          SECRET_VALUE="hunter2"
+          echo "::add-mask::$SECRET_VALUE"
+          echo "value is $SECRET_VALUE"
+
+      - name: Summary
+        run: |
+          echo "### Lesson 10" >> "$GITHUB_STEP_SUMMARY"
+          echo "- ran by ${{ github.actor }}" >> "$GITHUB_STEP_SUMMARY"
