@@ -1,0 +1,21 @@
+name: lesson14
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [dev, staging, prod]
+        size: [small, large]
+        exclude:
+          - target: dev
+            size: large
+    steps:
+      - name: Show combination
+        run: |
+          echo "target=${{ matrix.target }} size=${{ matrix.size }}"
+      - name: Fail one on purpose
+        if: matrix.target == 'dev' && matrix.size == 'small'
+        run: exit 1
