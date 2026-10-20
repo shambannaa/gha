@@ -12,6 +12,10 @@ jobs:
         exclude:
           - target: dev
             size: large
+        include:
+          - target: prod
+            size: xlarge
+
     steps:
       - name: Show combination
         run: |
