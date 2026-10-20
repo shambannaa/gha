@@ -17,7 +17,7 @@ jobs:
         if: failure()
         run: echo "something failed earlier"
       - name: Cleanup
-        if: !cancelled()
+        if: ${{ !cancelled() }}
         run: echo "cleanup"
       - name: Only on main
         if: github.ref_name == 'main'
