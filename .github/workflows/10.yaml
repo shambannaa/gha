@@ -10,6 +10,7 @@ jobs:
           echo "::notice::this is a notice"
           echo "::warning::this is a warning"
           echo "::error::this is an error"
+          exit 1
           echo "still running after the error annotation"
 
       - name: Group
