@@ -1,0 +1,24 @@
+name: lesson9
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo "step 1"
+      - name: Fails on purpose
+        run: exit 1
+      - name: Step 3, no if
+        run: echo "step 3"
+      - name: On failure
+        if: failure()
+        run: echo "something failed earlier"
+      - name: Cleanup
+        if: !cancelled()
+        run: echo "cleanup"
+      - name: Only on main
+        if: github.ref_name == 'main'
+        run: echo "main only"
