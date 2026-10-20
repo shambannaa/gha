@@ -1,0 +1,34 @@
+name: lesson12
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make files
+        run: |
+          mkdir -p build
+          echo "version=1.0.${{ github.run_number }}" > build/version.txt
+          echo "hello" > build/app.txt
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: build
+          retention-days: 1
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Before download
+        run: ls -la
+      - name: Download
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: downloaded
+      - name: Verify
+        run: |
+          ls -la downloaded
+          cat downloaded/version.txt
