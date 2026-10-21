@@ -8,7 +8,7 @@ jobs:
       - name: Show values
         env:
           SECRET_VALUE: ${{ secrets.DEMO_SECRET }}
-          REGION: ${{ env.APP_REGION }}
+          REGION: ${{ vars.APP_REGION }}
         run: |
           echo "secret: $SECRET_VALUE"
           echo "region: $REGION"
