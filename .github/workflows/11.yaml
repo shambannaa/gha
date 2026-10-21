@@ -9,9 +9,6 @@ on:
       verbose:
         type: boolean
         default: false
-  push:
-    branches: [main]
-    tags: ['docs/**']
 
 jobs:
   show:
