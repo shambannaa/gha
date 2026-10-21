@@ -1,0 +1,14 @@
+name: lesson15
+on: workflow_dispatch
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show values
+        env:
+          SECRET_VALUE: ${{ secrets.DEMO_SECRET }}
+          REGION: ${{ env.REGION }}
+        run: |
+          echo :::add-mask::: "secret: $SECRET_VALUE"
+          echo "region: $REGION"
