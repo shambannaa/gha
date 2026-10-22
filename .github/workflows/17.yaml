@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: g
-        uses: ./.git/actions/great
+        uses: ./.github/actions/greet
         with:
           who: shambu
       - name: Show output
