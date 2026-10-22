@@ -1,0 +1,14 @@
+name: lesson17
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: g
+        uses: ./.git/actions/great
+        with:
+          who: shambu
+      - name: Show output
+        run: echo "got ${{ steps.g.outputs.message }}"
