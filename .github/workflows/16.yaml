@@ -1,0 +1,21 @@
+name: lesson16
+on: workflow_dispatch
+
+concurrency:
+  group: lesson16
+  cancel-in-progress: true
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Optional step
+        id: opt
+        continue-on-error: true
+        run: exit 1
+      - name: Report
+        run: echo "outcome=${{ steps.opt.outcome }} conclusion=${{ steps.opt.conclusion }}"
+      - name: Wait
+        timeout-minutes: 1
+        run: sleep 90
