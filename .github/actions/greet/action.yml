@@ -1,0 +1,22 @@
+name: Greet
+description: Builds a greeting message
+
+inputs:
+  who:
+    description: Name to greet
+    required: false
+    default: world
+
+outputs:
+  message:
+    description: The greeting
+    value: ${{ steps.build.outputs.message }}
+
+runs:
+  using: composite
+  steps:
+    - id: build
+      shell: bash
+      run: echo "message=hello ${{ inputs.who }}" >> "$GITHUB_OUTPUT"
+    - shell: bash
+      run: echo "built with ${{ inputs.who }}"
