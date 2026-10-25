@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 jobs:
   call:
-    uses: ./.github/actions/greet/action.yml@main
+    uses: .github/actions/greet/action.yml@main
     with:
       who: shambu
       shout: Hehe
