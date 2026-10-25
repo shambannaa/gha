@@ -3,10 +3,10 @@ on: workflow_dispatch
 
 jobs:
   call:
-    uses: .github/actions/greet/action.yml@main
+    uses: ./.github/workflows/reusable-greet.yml
     with:
       who: shambu
-      shout: Hehe
+      shout: true
   show:
     needs: call
     runs-on: ubuntu-latest
