@@ -1,0 +1,14 @@
+name: lesson18
+on: workflow_dispatch
+
+jobs:
+  call:
+    uses: ./.github/workflows/???.yml
+    with:
+      who: shambu
+      shout: Hehe
+  show:
+    needs: call
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "got ${{ needs.call.outputs.message }}"
