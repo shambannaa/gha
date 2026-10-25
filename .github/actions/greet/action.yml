@@ -1,22 +1,26 @@
-name: Greet
-description: Builds a greeting message
+# .github/workflows/reusable-greet.yml
+name: reusable-greet
+on:
+  workflow_call:
+    inputs:
+      who:
+        type: string          # type is REQUIRED here
+        required: true
+      shout:
+        type: boolean
+        default: false
+    outputs:
+      message:
+        description: The greeting
+        value: ${{ jobs.build.outputs.message }}
 
-inputs:
-  who:
-    description: Name to greet
-    required: false
-    default: world
-
-outputs:
-  message:
-    description: The greeting
-    value: ${{ steps.build.outputs.message }}
-
-runs:
-  using: composite
-  steps:
-    - id: build
-      shell: bash
-      run: echo "message=hello ${{ inputs.who }}" >> "$GITHUB_OUTPUT"
-    - shell: bash
-      run: echo "built with ${{ inputs.who }}"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.m.outputs.message }}
+    steps:
+      - id: m
+        run: echo "message=hello ${{ inputs.who }}" >> "$GITHUB_OUTPUT"
+      - if: inputs.shout
+        run: echo "HELLO ${{ inputs.who }}!"
