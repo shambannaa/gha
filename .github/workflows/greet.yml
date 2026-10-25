@@ -1,0 +1,26 @@
+# .github/workflows/reusable-greet.yml
+name: reusable-greet
+on:
+  workflow_call:
+    inputs:
+      who:
+        type: string          # type is REQUIRED here
+        required: true
+      shout:
+        type: boolean
+        default: false
+    outputs:
+      message:
+        description: The greeting
+        value: ${{ jobs.build.outputs.message }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.m.outputs.message }}
+    steps:
+      - id: m
+        run: echo "message=hello ${{ inputs.who }}" >> "$GITHUB_OUTPUT"
+      - if: inputs.shout
+        run: echo "HELLO ${{ inputs.who }}!"
