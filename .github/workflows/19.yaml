@@ -5,7 +5,7 @@ jobs:
   types:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4              # a JavaScript action
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262              # a JavaScript action
       - uses: ./.github/actions/greet          # type: ???
         with:
           who: pinning
