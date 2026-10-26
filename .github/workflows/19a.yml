@@ -1,0 +1,14 @@
+name: lesson18b
+on: workflow_dispatch
+
+jobs:
+  call:
+    uses: shambannaa/github-actions/.github/workflows/reusable-greet.yml@main
+    with:
+      who: shambu
+      shout: true
+  show:
+    needs: call
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "got ${{ needs.call.outputs.message }}"
