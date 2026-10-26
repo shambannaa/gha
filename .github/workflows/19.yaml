@@ -1,0 +1,17 @@
+name: lesson19
+on: workflow_dispatch
+
+jobs:
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4              # a JavaScript action
+      - uses: ./.github/actions/greet          # type: ???
+        with:
+          who: pinning
+      - uses: docker://ubuntu:latest                # a Docker image
+        with:
+          entrypoint: /bin/echo
+          args: hello from docker
+      - name: See downloaded actions
+        run: find /home/runner/work/_actions -maxdepth 3 -type d
