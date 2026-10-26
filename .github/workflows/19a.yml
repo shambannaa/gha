@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 jobs:
   call:
-    uses: shambannaa/github-actions/.github/workflows/reusable-greet.yml@main
+    uses: shambannaa/github-actions/.github/workflows/reusable-greet.yaml@main
     with:
       who: shambu
       shout: true
