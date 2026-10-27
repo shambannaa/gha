@@ -1,0 +1,26 @@
+name: lesson21
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        type: string
+        default: hello
+
+permissions: {}              # layer 1: the token can do almost nothing
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate
+        env:
+          TITLE: ${{ inputs.title }}
+        run: |
+          if [[ ! "$TITLE" =~ ^[A-Za-z0-9\ _.-]+$ ]]; then
+            echo "::error::title has disallowed characters"
+            exit 1
+          fi
+      - name: Safe
+        env:
+          TITLE: ${{ inputs.title }}
+        run: echo "Title: $TITLE"
