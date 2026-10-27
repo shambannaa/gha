@@ -1,4 +1,4 @@
-name: lesson21
+name: lesson21b
 on:
   workflow_dispatch:
     inputs:
@@ -6,7 +6,7 @@ on:
         type: string
         default: hello
 
-permissions: {}              # layer 1: the token can do almost nothing
+permissions: {}
 
 jobs:
   demo:
@@ -16,11 +16,12 @@ jobs:
         env:
           TITLE: ${{ inputs.title }}
         run: |
-          if [[ ! "$TITLE" =~ ^[A-Za-z0-9\ _.-]+$ ]]; then
+          if ! printf '%s' "$TITLE" | grep -Eq '^[A-Za-z0-9 _.-]+$'; then
             echo "::error::title has disallowed characters"
             exit 1
           fi
       - name: Safe
         env:
           TITLE: ${{ inputs.title }}
-        run: echo "Title: $TITLE"
+        run: |
+          echo "Title: $TITLE"
