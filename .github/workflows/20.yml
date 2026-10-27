@@ -4,9 +4,7 @@ on: workflow_dispatch
 jobs:
   report:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: read
+    permissions: {}
     steps:
       - name: Create an issue
         env:
