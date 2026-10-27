@@ -1,0 +1,15 @@
+name: lesson20
+on: workflow_dispatch
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Create an issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh issue create --title "Lesson 20 test" --body "created by run ${{ github.run_number }}"
