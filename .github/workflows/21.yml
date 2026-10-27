@@ -1,0 +1,19 @@
+name: lesson21
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        type: string
+        default: hello
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vulnerable
+        run: echo "Title: ${{ inputs.title }}"
+
+      - name: Safe
+        env:
+          TITLE: ${{ inputs.title }}
+        run: echo "Title: $TITLE"
