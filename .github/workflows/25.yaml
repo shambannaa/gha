@@ -1,0 +1,16 @@
+name: lesson25
+on: workflow_dispatch
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - run: echo "dev region is ${{ vars.APP_REGION }}"
+
+  deploy-prod:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - run: echo "prod region is ${{ vars.APP_REGION }}"
