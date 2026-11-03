@@ -1,0 +1,20 @@
+name: lesson28
+on: workflow_dispatch
+
+jobs:
+  info:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Runner details
+        run: |
+          echo "label requested: ${{ matrix.os }}"
+          echo "environment: ${{ runner.environment }}"
+          echo "os/arch: ${{ runner.os }} / ${{ runner.arch }}"
+          echo "name: ${{ runner.name }}"
+          nproc
+          free -h | head -2
+          df -h / | tail -1
+          cat /etc/os-release | head -2
