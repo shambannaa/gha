@@ -1,0 +1,31 @@
+name: lesson30
+on: workflow_dispatch
+
+jobs:
+  host-mode:
+    runs-on: ubuntu-latest
+    services:
+      web:
+        image: nginx:1.27-alpine
+        ports:
+          - 8080:80
+        options: >-
+          --health-cmd "wget -q --spider http://localhost/ || exit 1"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+    steps:
+      - name: Call the service
+        run: curl -s localhost:???? | head -5
+
+  container-mode:
+    runs-on: ubuntu-latest
+    container: alpine:3.20
+    services:
+      web:
+        image: nginx:1.27-alpine
+    steps:
+      - name: Call the service
+        run: |
+          apk add --no-cache curl
+          curl -s http://localhost:80 | head -5
