@@ -1,0 +1,19 @@
+name: lesson31
+on: workflow_dispatch
+
+env: &common
+  APP: gha-lab
+  STAGE: dev
+
+jobs:
+  first: &base_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show
+        run: echo "job=${{ github.job }} app=$APP stage=$STAGE"
+
+  third:
+    runs-on: ubuntu-latest
+    env: *common
+    steps:
+      - run: echo "third sees $APP and $STAGE"
