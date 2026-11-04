@@ -13,7 +13,7 @@ jobs:
         run: echo "job=${{ github.job }} app=$APP stage=$STAGE"
 
   third:
-    runs-on: ubuntu-latest
-    env: *common
-    steps:
-      - run: echo "third sees $APP and $STAGE"
+    env:
+      APP: newapp
+      STAGE: newstage
+    steps: *base_job
