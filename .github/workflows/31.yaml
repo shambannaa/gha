@@ -13,6 +13,7 @@ jobs:
         run: echo "job=${{ github.job }} app=$APP stage=$STAGE"
 
   third:
+    runs-on: ubuntu-latest
     env:
       APP: newapp
       STAGE: newstage
