@@ -1,0 +1,34 @@
+name: lesson30b
+on: workflow_dispatch
+
+jobs:
+  db-test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: test
+        ports:
+          - 5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - name: Install client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+      - name: Query the database
+        shell: bash
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: test
+          PGPORT: ${{ job.services.db.ports['5432'] }}
+        run: |
+          echo "mapped host port: $PGPORT"
+          psql -v ON_ERROR_STOP=1 \
+            -c "create table t(id int, name text);" \
+            -c "insert into t values (1,'a'),(2,'b');" \
+            -c "select * from t;"
