@@ -10,7 +10,7 @@ Reusable workflows used in the cross-repo lesson live in the companion repo [sha
 
 | # | Lesson | What it teaches | File |
 |---|---|---|---|
-| 1 | Workflow anatomy | on, jobs, runs-on, steps, run, uses, actions/checkout, GITHUB_WORKSPACE, working-directory. Shows that a runner starts empty until checkout. | [1.yaml](.github/workflows/1.yaml) |
+| 1 | Workflow anatomy | on, jobs, runs-on, steps, run, uses, actions/checkout, GITHUB_WORKSPACE, working-directory. Shows that a runner starts empty until checkout. | [1.yaml](.github/workflows/lab.yaml) |
 | 2 | Creating and reading files | mkdir, touch, echo, printf, cat and heredocs inside a step. Files written in one step are visible to the next. | [2.yaml](.github/workflows/2.yaml) |
 | 3 | Copy, move, delete, find | cp, mv, rm -f and find in a mini pipeline. What survives between steps and what does not. | [3.yaml](.github/workflows/3.yaml) |
 | 4 | env and GITHUB_ENV | env at workflow, job and step level. Runtime variables through GITHUB_ENV. A checkout, verify and build pipeline. | [4.yaml](.github/workflows/4.yaml) |
