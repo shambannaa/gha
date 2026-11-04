@@ -6,9 +6,9 @@ env: &common
   STAGE: dev
 
 jobs:
-  first: &base_job
+  first:
     runs-on: ubuntu-latest
-    steps:
+    steps: &base_job
       - name: Show
         run: echo "job=${{ github.job }} app=$APP stage=$STAGE"
 
