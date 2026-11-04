@@ -16,7 +16,7 @@ jobs:
           --health-retries 5
     steps:
       - name: Call the service
-        run: curl -s localhost:80 | head -5
+        run: curl -s localhost:8080 | head -5
 
   container-mode:
     runs-on: ubuntu-latest
@@ -28,4 +28,4 @@ jobs:
       - name: Call the service
         run: |
           apk add --no-cache curl
-          curl -s http://localhost:80 | head -5
+          curl -s http://web:80 | head -5
