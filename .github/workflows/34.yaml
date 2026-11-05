@@ -20,7 +20,7 @@ jobs:
       - name: After setup-node
         run: |
           node --version
-          ls "$RUNNER_TOOL_CACHE/"
+          ls "$RUNNER_TOOL_CACHE/node"
 
       - name: Hosted IP ranges
         run: curl -sSf https://api.github.com/meta | jq '.actions | length'
