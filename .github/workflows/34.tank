@@ -1,0 +1,26 @@
+name: lesson34
+on: workflow_dispatch
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Which image is this
+        run: |
+          echo "image: $ImageOS version $ImageVersion"
+          echo "tool cache: $RUNNER_TOOL_CACHE"
+          ls "$RUNNER_TOOL_CACHE"
+          node --version
+          docker --version
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: After setup-node
+        run: |
+          node --version
+          ls "$RUNNER_TOOL_CACHE/"
+
+      - name: Hosted IP ranges
+        run: curl -sSf https://api.github.com/meta | jq '.actions | length'
